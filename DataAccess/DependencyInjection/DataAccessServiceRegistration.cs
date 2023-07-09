@@ -24,6 +24,8 @@ namespace DataAccess.DependencyInjection
       services.AddSingleton<IMessageDal, MessageDal>();
       services.AddSingleton<IConversationUserDal, ConversationUserDal>();
       services.AddSingleton<INotificationDal, NotificationDal>();
+      services.AddSingleton<IUserCodeDal, UserCodeDal>();
+      services.AddSingleton<ISavedCodeDal, SavedCodeDal>();
       return services;
     }
   }

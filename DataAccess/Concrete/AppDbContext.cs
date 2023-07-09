@@ -42,6 +42,8 @@ namespace DataAccess.Concrete
     public DbSet<Notification> Notifications { get; set; }
     public DbSet<FollowedDiscussion> FollowedDiscussions { get; set; }
     public DbSet<OnlineUser> OnlineUsers { get; set; }
+    public DbSet<UserCode> UserCodes { get; set; }
+    public DbSet<SavedCode> SavedCodes { get; set; }
 
 
   }

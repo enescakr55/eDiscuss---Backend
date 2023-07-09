@@ -23,6 +23,8 @@ namespace Business.DependencyInjection
       services.AddSingleton<IConversationService, ConversationManager>();
       services.AddSingleton<IConversationUserService, ConversationUserManager>();
       services.AddSingleton<INotificationService, NotificationManager>();
+      services.AddSingleton<ISavedCodeService, SavedCodeManager>();
+      services.AddSingleton<IUserCodeService, UserCodeManager>();
       return services;
     }
   }
