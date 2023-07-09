@@ -42,6 +42,7 @@ namespace Core.DataAccess.EntityFramework
         context.ChangeTracker.LazyLoadingEnabled = true;
         return context.Set<TEntity>().SingleOrDefault(predicate);
 
+
       }
     }
 
