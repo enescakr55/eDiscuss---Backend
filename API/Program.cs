@@ -25,10 +25,10 @@ builder.Services.AddDataAccessServices();
 builder.Services.AddTransient<IHttpContextHelperService, HttpContextHelperManager>();
 builder.Services.AddCors(options => { options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin()); });
 builder.Services.AddSignalR();
-/*using (var context = new AppDbContext())
+using (var context = new AppDbContext())
 {
   context.Database.Migrate();
-}*/
+}
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

@@ -26,8 +26,9 @@ namespace DataAccess.Concrete
             .AddJsonFile("appsettings.json")
             .Build();
 
-        var connectionString = configuration.GetConnectionString("DbString");
-        optionsBuilder.UseSqlServer(connectionString);
+        var connectionString = configuration.GetConnectionString("mysql");
+        //optionsBuilder.UseSqlServer(connectionString);
+        optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             
       }
       
