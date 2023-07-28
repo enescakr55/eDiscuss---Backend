@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Entities;
 using Entities.Concrete;
 using Entities.Concrete.DTOs;
 using System;
@@ -14,6 +15,9 @@ namespace Business.Profiles
     public ConversationProfile()
     {
       CreateMap<Conversation, ConversationAndUsers>().ReverseMap();
+      CreateMap<SavedCode,ShowSavedCodeDto>().ReverseMap();
+      CreateMap<User, UserInfoDto>().ReverseMap();
+      CreateMap<UserCode, UserCodeViewDto>().ReverseMap();
     }
 
   }

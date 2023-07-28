@@ -2,10 +2,12 @@
 using Entities;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -26,9 +28,18 @@ namespace DataAccess.Concrete
 
         var connectionString = configuration.GetConnectionString("DbString");
         optionsBuilder.UseSqlServer(connectionString);
+            
       }
       
     }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+      base.OnModelCreating(modelBuilder);
+      modelBuilder.Entity<UserCode>().Navigation(e => e.User).AutoInclude();
+      modelBuilder.Entity<SavedCode>().Navigation(e=>e.UserCode).AutoInclude();
+
+    }
+
     public DbSet<User> Users { get; set; }
     public DbSet<Category> Categories { get; set; }
     public DbSet<Subject> Subjects { get; set; }
