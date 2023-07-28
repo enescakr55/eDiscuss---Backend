@@ -4,6 +4,7 @@ using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace DataAccess.Concrete
 
         var connectionString = configuration.GetConnectionString("mysql");
         //optionsBuilder.UseSqlServer(connectionString);
-        optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+        optionsBuilder.UseMySql(connectionString,new MySqlServerVersion(new Version(5,7,9))).LogTo(Console.WriteLine,LogLevel.Error).EnableDetailedErrors().EnableSensitiveDataLogging();
             
       }
       
