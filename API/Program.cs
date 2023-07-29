@@ -130,6 +130,17 @@ using (var scope = app.Services.CreateScope())
   db.Database.Migrate();
 }
 app.UseStaticFiles();
+app.Use(async (context, next) =>
+{
+  await next();
+
+  if (!Path.HasExtension(context.Request.Path.Value) &&
+      !context.Request.Path.Value.StartsWith("/api/"))
+  {
+    context.Request.Path = "/index.html";
+    await next();
+  }
+});
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
