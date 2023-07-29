@@ -27,10 +27,20 @@ namespace DataAccess.Concrete
             .AddJsonFile("appsettings.json")
             .Build();
 
-        var connectionString = configuration.GetConnectionString("mysql");
+        //var connectionString = configuration.GetConnectionString("mysql");
         //optionsBuilder.UseSqlServer(connectionString);
-        optionsBuilder.UseMySql(connectionString,new MySqlServerVersion(new Version(5,7,9))).LogTo(Console.WriteLine,LogLevel.Error).EnableDetailedErrors().EnableSensitiveDataLogging();
-            
+        //optionsBuilder.UseMySql(connectionString,new MySqlServerVersion(new Version(5,7,9))).LogTo(Console.WriteLine,LogLevel.Error).EnableDetailedErrors().EnableSensitiveDataLogging();
+        var sqlProvider = configuration.GetSection("SqlProvider").Value;
+        var connectionString = configuration.GetConnectionString(sqlProvider ?? "sqlserver");
+        //
+        if (sqlProvider == "mysql")
+        {
+          optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), x => x.MigrationsAssembly("Migrations.Mysql")).LogTo(Console.WriteLine, LogLevel.Error).EnableDetailedErrors().EnableSensitiveDataLogging();
+        }
+        else
+        {
+          optionsBuilder.UseSqlServer(connectionString,x=>x.MigrationsAssembly("Migrations.SqlServer"));
+        }
       }
       
     }

@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "DataAccess\DataAccess.csproj", "{FCC6D63D-9019-4DAC-809F-BC055304823A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{82723EE6-74B4-4853-BAFA-B3C26B9E7BF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{82723EE6-74B4-4853-BAFA-B3C26B9E7BF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations.Mysql", "Migrations.Mysql\Migrations.Mysql.csproj", "{997F0845-CE53-4974-8D93-82C2E9B1A911}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Migrations.SqlServer", "Migrations.SqlServer\Migrations.SqlServer.csproj", "{D1A9DEC1-B790-46CE-A2F9-072F0A3B07A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{82723EE6-74B4-4853-BAFA-B3C26B9E7BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82723EE6-74B4-4853-BAFA-B3C26B9E7BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82723EE6-74B4-4853-BAFA-B3C26B9E7BF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{997F0845-CE53-4974-8D93-82C2E9B1A911}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{997F0845-CE53-4974-8D93-82C2E9B1A911}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{997F0845-CE53-4974-8D93-82C2E9B1A911}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{997F0845-CE53-4974-8D93-82C2E9B1A911}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1A9DEC1-B790-46CE-A2F9-072F0A3B07A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1A9DEC1-B790-46CE-A2F9-072F0A3B07A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1A9DEC1-B790-46CE-A2F9-072F0A3B07A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1A9DEC1-B790-46CE-A2F9-072F0A3B07A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

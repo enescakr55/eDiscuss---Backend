@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Migrations.Mysql;
+using Migrations.SqlServer;
 using System.Reflection;
 using System.Text;
 
@@ -25,10 +27,6 @@ builder.Services.AddDataAccessServices();
 builder.Services.AddTransient<IHttpContextHelperService, HttpContextHelperManager>();
 builder.Services.AddCors(options => { options.AddPolicy("AllowOrigin", builder => builder.AllowAnyOrigin()); });
 builder.Services.AddSignalR();
-using (var context = new AppDbContext())
-{
-  context.Database.Migrate();
-}
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -121,7 +119,16 @@ if (app.Environment.IsDevelopment())
   app.UseSwagger();
   app.UseSwaggerUI();
 }
+using (var scope = app.Services.CreateScope())
+{
+  DbContext db = new AppDbContextForSqlServer();
+  if (builder.Configuration.GetSection("SqlProvider").Value == "mysql")
+  {
+    db = new AppDbContextForMysql();
+  }
 
+  db.Database.Migrate();
+}
 app.UseStaticFiles();
 app.UseHttpsRedirection();
 
