@@ -129,7 +129,7 @@ using (var scope = app.Services.CreateScope())
 
   db.Database.Migrate();
 }
-app.UseStaticFiles();
+
 app.Use(async (context, next) =>
 {
   await next();
@@ -141,6 +141,8 @@ app.Use(async (context, next) =>
     await next();
   }
 });
+app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string> { "index.html" } });
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
