@@ -27,7 +27,7 @@ namespace Entities.Concrete
     public DateTime CreatedDate { get; set; }
 
     [ForeignKey(nameof(Reply))]
-    public int Solution { get; set; } = default;
-    public virtual Reply Reply { get; set; }
+    public int? Solution { get; set; } = null;
+    //public virtual Reply Reply { get; set; }
   }
 }

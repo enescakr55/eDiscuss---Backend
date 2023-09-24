@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Migrations.Mysql;
 
@@ -10,9 +11,10 @@ using Migrations.Mysql;
 namespace Migrations.Mysql.Migrations
 {
     [DbContext(typeof(AppDbContextForMysql))]
-    partial class AppDbContextForMysqlModelSnapshot : ModelSnapshot
+    [Migration("20230924194109_addedReplySolution2")]
+    partial class addedReplySolution2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
