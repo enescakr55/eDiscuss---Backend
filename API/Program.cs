@@ -137,14 +137,6 @@ using (var scope = app.Services.CreateScope())
 
 app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string> { "index.html" } });
 app.UseStaticFiles();
-
-app.UseHttpsRedirection();
-
-app.UseAuthentication();
-app.UseAuthorization();
-app.MapHub<MessagesHub>("/messages");
-app.MapHub<NotificationsHub>("/notifications");
-app.MapControllers();
 app.Use(async (context, next) =>
 {
   await next();
@@ -156,6 +148,14 @@ app.Use(async (context, next) =>
     await next();
   }
 });
+app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapHub<MessagesHub>("/messages");
+app.MapHub<NotificationsHub>("/notifications");
+app.MapControllers();
+
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseHsts();
 app.Run();
