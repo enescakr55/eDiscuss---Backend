@@ -13,18 +13,19 @@ namespace Business.DependencyInjection
   {
     public static IServiceCollection AddBusinessServices(this IServiceCollection services)
     {
-      services.AddSingleton<IUserService, UserManager>();
-      services.AddSingleton<IAuthService, AuthManager>();
-      services.AddSingleton<IUserSubjectService, UserSubjectManager>();
-      services.AddSingleton<IDiscussService, DiscussManager>();
-      services.AddSingleton<ICategoryService, CategoryManager>();
-      services.AddSingleton<IReplyService, ReplyManager>();
-      services.AddSingleton<ISubjectService, SubjectManager>();
-      services.AddSingleton<IConversationService, ConversationManager>();
-      services.AddSingleton<IConversationUserService, ConversationUserManager>();
-      services.AddSingleton<INotificationService, NotificationManager>();
-      services.AddSingleton<ISavedCodeService, SavedCodeManager>();
-      services.AddSingleton<IUserCodeService, UserCodeManager>();
+      services.AddScoped<IUserService, UserManager>();
+      services.AddScoped<IAuthService, AuthManager>();
+      services.AddScoped<IUserSubjectService, UserSubjectManager>();
+      services.AddScoped<IDiscussService, DiscussManager>();
+      services.AddScoped<ICategoryService, CategoryManager>();
+      services.AddScoped<IReplyService, ReplyManager>();
+      services.AddScoped<ISubjectService, SubjectManager>();
+      services.AddScoped<IConversationService, ConversationManager>();
+      services.AddScoped<IConversationUserService, ConversationUserManager>();
+      services.AddScoped<INotificationService, NotificationManager>();
+      services.AddScoped<ISavedCodeService, SavedCodeManager>();
+      services.AddScoped<IUserCodeService, UserCodeManager>();
+      services.AddScoped<IUserProfileManager, UserProfileManager>();
       return services;
     }
   }

@@ -98,6 +98,9 @@ namespace Migrations.Mysql.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<int>("Solution")
+                        .HasColumnType("int");
+
                     b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
@@ -105,6 +108,8 @@ namespace Migrations.Mysql.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("DiscussId");
+
+                    b.HasIndex("Solution");
 
                     b.ToTable("Discusses");
                 });
@@ -326,6 +331,9 @@ namespace Migrations.Mysql.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime(6)");
 
@@ -417,6 +425,17 @@ namespace Migrations.Mysql.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Entities.Concrete.Discuss", b =>
+                {
+                    b.HasOne("Entities.Concrete.Reply", "Reply")
+                        .WithMany()
+                        .HasForeignKey("Solution")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reply");
+                });
+
             modelBuilder.Entity("Entities.Concrete.FollowedDiscussion", b =>
                 {
                     b.HasOne("Entities.Concrete.Discuss", "Discuss")
@@ -469,7 +488,7 @@ namespace Migrations.Mysql.Migrations
             modelBuilder.Entity("Entities.Concrete.SavedCode", b =>
                 {
                     b.HasOne("Entities.Concrete.UserCode", "UserCode")
-                        .WithMany()
+                        .WithMany("SavedCodes")
                         .HasForeignKey("UserCodeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -505,6 +524,11 @@ namespace Migrations.Mysql.Migrations
                     b.Navigation("Subject");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Concrete.UserCode", b =>
+                {
+                    b.Navigation("SavedCodes");
                 });
 #pragma warning restore 612, 618
         }

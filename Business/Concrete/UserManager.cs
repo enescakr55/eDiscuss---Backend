@@ -13,6 +13,7 @@ using Entities.Concrete.DTOs;
 using Entities.Concrete;
 using System.Net.Mail;
 using Core.Helpers;
+using DataAccess.Concrete;
 
 namespace Business.Concrete
 {
@@ -21,9 +22,11 @@ namespace Business.Concrete
     IUserDal _userDal;
     IPasswordResetCodeDal _passwordResetCodeDal;
     IHttpContextHelperService _httpHelperService;
-    public UserManager(IUserDal userDal, IPasswordResetCodeDal passwordResetCodeDal, IHttpContextHelperService httpHelperService)
+    AppDbContext _dbContext;
+    public UserManager(IUserDal userDal, IPasswordResetCodeDal passwordResetCodeDal, IHttpContextHelperService httpHelperService,AppDbContext dbContext)
     {
       _userDal = userDal;
+      _dbContext = dbContext;
       _passwordResetCodeDal = passwordResetCodeDal;
       _httpHelperService = httpHelperService;
     }
@@ -178,5 +181,7 @@ namespace Business.Concrete
       _userDal.Update(currentUser);
       return new SuccessResult("Profil fotoğrafı başarıyla güncellendi");
     }
+
+
   }
 }

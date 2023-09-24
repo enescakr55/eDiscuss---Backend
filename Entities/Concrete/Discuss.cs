@@ -25,5 +25,9 @@ namespace Entities.Concrete
     public string DiscussHeader { get; set; }
     public string DiscussDescription { get; set; }
     public DateTime CreatedDate { get; set; }
+
+    [ForeignKey(nameof(Reply))]
+    public int Solution { get; set; } = default;
+    public virtual Reply Reply { get; set; }
   }
 }

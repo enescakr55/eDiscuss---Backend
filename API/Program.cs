@@ -15,12 +15,16 @@ using Migrations.Mysql;
 using Migrations.SqlServer;
 using System.Reflection;
 using System.Text;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options=>{
+  options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+  options.JsonSerializerOptions.WriteIndented = true;
+});
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddBusinessServices();
 builder.Services.AddDataAccessServices();
@@ -130,19 +134,10 @@ using (var scope = app.Services.CreateScope())
   db.Database.Migrate();
 }
 
-app.Use(async (context, next) =>
-{
-  await next();
 
-  if (!Path.HasExtension(context.Request.Path.Value) &&
-      !context.Request.Path.Value.StartsWith("/api/"))
-  {
-    context.Request.Path = "/index.html";
-    await next();
-  }
-});
 app.UseDefaultFiles(new DefaultFilesOptions { DefaultFileNames = new List<string> { "index.html" } });
 app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
@@ -150,6 +145,17 @@ app.UseAuthorization();
 app.MapHub<MessagesHub>("/messages");
 app.MapHub<NotificationsHub>("/notifications");
 app.MapControllers();
+app.Use(async (context, next) =>
+{
+  await next();
+
+  if (!Path.HasExtension(context.Request.Path.Value) &&
+      !context.Request.Path.Value.StartsWith("/api/") && !context.Request.Path.Value.StartsWith("/messages/") && !context.Request.Path.Value.StartsWith("/notifications/"))
+  {
+    context.Request.Path = "/index.html";
+    await next();
+  }
+});
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseHsts();
 app.Run();

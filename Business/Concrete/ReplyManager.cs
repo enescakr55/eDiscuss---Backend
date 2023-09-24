@@ -53,6 +53,12 @@ namespace Business.Concrete
       return new SuccessDataResult<List<Reply>>(_replyDal.GetAll(x => x.DiscussId == discussId));
     }
 
+    public IDataResult<List<Reply>> GetRepliesByUserId(int id)
+    {
+      var result = _replyDal.GetAll(x => x.UserId == id);
+      return new SuccessDataResult<List<Reply>>(result);
+    }
+
     public IDataResult<List<RepliesDetailsDto>> GetReplyDetailsByDiscussId(int id)
     {
       var result = _replyDal.GetReplyDetails(x=>x.DiscussId == id);

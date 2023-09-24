@@ -19,5 +19,6 @@ namespace Business.Abstract
     IDataResult<List<Reply>> GetRepliesByDiscussId(int discussId);
     IDataResult<Reply> GetById(int id);
     IDataResult<List<RepliesDetailsDto>> GetReplyDetailsByDiscussId(int id);
+    IDataResult<List<Reply>> GetRepliesByUserId(int id);
   }
 }

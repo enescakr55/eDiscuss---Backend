@@ -26,5 +26,6 @@ namespace Business.Abstract
     IDataResult<UserInfoDto> GetUserInfoByUserId(int id);
     IDataResult<UserInfoDto> GetUserInfoByUsername(string username);
     IResult UpdateProfilePicture(string photoPath);
+
   }
 }

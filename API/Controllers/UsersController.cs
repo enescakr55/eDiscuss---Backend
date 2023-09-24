@@ -12,10 +12,12 @@ namespace API.Controllers
   public class UsersController : ControllerBase
   {
     IUserService _userService;
+    IUserProfileManager _userProfileService;
     IWebHostEnvironment _env;
-    public UsersController(IUserService userService,IWebHostEnvironment env)
+    public UsersController(IUserProfileManager userProfileService,IUserService userService,IWebHostEnvironment env)
     {
       _userService = userService;
+      _userProfileService = userProfileService;
       _env = env;
     }
     [HttpGet("getuserinfo")]
@@ -71,6 +73,10 @@ namespace API.Controllers
         return Ok(_userService.UpdateProfilePicture(guid.ToString("N")+extension));
       }
         
+    }
+    [HttpGet("GetUserProfile")]
+    public IActionResult GetUserProfile(string username){
+      return Ok(_userProfileService.GetUserProfile(username));
     }
   }
 }

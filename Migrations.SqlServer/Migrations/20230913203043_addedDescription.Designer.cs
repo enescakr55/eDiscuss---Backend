@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Migrations.SqlServer;
 
@@ -11,9 +12,10 @@ using Migrations.SqlServer;
 namespace Migrations.SqlServer.Migrations
 {
     [DbContext(typeof(AppDbContextForSqlServer))]
-    partial class AppDbContextForSqlServerModelSnapshot : ModelSnapshot
+    [Migration("20230913203043_addedDescription")]
+    partial class addedDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

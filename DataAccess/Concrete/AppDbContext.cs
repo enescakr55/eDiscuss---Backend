@@ -48,6 +48,7 @@ namespace DataAccess.Concrete
     {
       base.OnModelCreating(modelBuilder);
       modelBuilder.Entity<UserCode>().Navigation(e => e.User).AutoInclude();
+      modelBuilder.Entity<UserCode>().Navigation(e=>e.SavedCodes).AutoInclude();
       modelBuilder.Entity<SavedCode>().Navigation(e=>e.UserCode).AutoInclude();
 
     }

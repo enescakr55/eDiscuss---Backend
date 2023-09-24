@@ -13,19 +13,20 @@ namespace DataAccess.DependencyInjection
   {
     public static IServiceCollection AddDataAccessServices(this IServiceCollection services)
     {
-      services.AddSingleton<IUserDal, UserDal>();
-      services.AddSingleton<ICategoryDal, CategoryDal>();
-      services.AddSingleton<IReplyDal, ReplyDal>();
-      services.AddSingleton<IDiscussDal, DiscussDal>();
-      services.AddSingleton<ISubjectDal, SubjectDal>();
-      services.AddSingleton<IUserSubjectDal, UserSubjectDal>();
-      services.AddSingleton<IPasswordResetCodeDal, PasswordResetCodeDal>();
-      services.AddSingleton<IConversationDal, ConversationDal>();
-      services.AddSingleton<IMessageDal, MessageDal>();
-      services.AddSingleton<IConversationUserDal, ConversationUserDal>();
-      services.AddSingleton<INotificationDal, NotificationDal>();
-      services.AddSingleton<IUserCodeDal, UserCodeDal>();
-      services.AddSingleton<ISavedCodeDal, SavedCodeDal>();
+      services.AddScoped<IUserDal, UserDal>();
+      services.AddScoped<ICategoryDal, CategoryDal>();
+      services.AddScoped<IReplyDal, ReplyDal>();
+      services.AddScoped<IDiscussDal, DiscussDal>();
+      services.AddScoped<ISubjectDal, SubjectDal>();
+      services.AddScoped<IUserSubjectDal, UserSubjectDal>();
+      services.AddScoped<IPasswordResetCodeDal, PasswordResetCodeDal>();
+      services.AddScoped<IConversationDal, ConversationDal>();
+      services.AddScoped<IMessageDal, MessageDal>();
+      services.AddScoped<IConversationUserDal, ConversationUserDal>();
+      services.AddScoped<INotificationDal, NotificationDal>();
+      services.AddScoped<IUserCodeDal, UserCodeDal>();
+      services.AddScoped<ISavedCodeDal, SavedCodeDal>();
+      services.AddScoped<AppDbContext>();
       return services;
     }
   }

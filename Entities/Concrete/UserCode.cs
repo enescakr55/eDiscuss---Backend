@@ -20,5 +20,7 @@ namespace Entities.Concrete
     public CodeTypes CodeType { get; set; }
     public DateTime? CreatedDate { get; set; }
     public DateTime? UpdatedDate { get; set; }
+    public string? Description { get; set; }
+    public virtual IList<SavedCode> SavedCodes { get; set; } = new List<SavedCode>();
   }
 }

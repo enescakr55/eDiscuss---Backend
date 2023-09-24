@@ -1,5 +1,6 @@
 ﻿using Core.Results.DataResults;
 using Entities.Concrete;
+using Entities.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -13,5 +14,7 @@ namespace Business.Abstract
   {
     public IDataResult<UserCode> Add(UserCode userCode);
     public IDataResult<UserCode> Get(int userCodeId);
+    IDataResult<List<UserCode>> GetAllByUserId(int userId);
+    IDataResult<UserCodeContent> GetUserCodeDetailsByUserCodeId(int userCodeId);
   }
 }

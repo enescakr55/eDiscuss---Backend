@@ -14,22 +14,22 @@ namespace API.Controllers
     {
       _savedCodeService = savedCodeService;
     }
-    [HttpPost("/add")]
+    [HttpPost("add")]
     public IActionResult AddSavedCode(AddSavedCodeDto savedCodeDto){
       var result = _savedCodeService.Add(savedCodeDto);
       return Ok(result);
     }
-    [HttpPost("/update")]
+    [HttpPost("update")]
     public IActionResult UpdateSavedCode(UpdateSavedCodeDto savedCodeDto){
     var result = _savedCodeService.Update(savedCodeDto);
     return Ok(result);
     }
-    [HttpGet("/get")]
+    [HttpGet("get")]
     public IActionResult GetCode(int savedCodeId){
       var result = _savedCodeService.GetCodeById(savedCodeId);
       return Ok(result);
     }
-    [HttpGet("/getother")]
+    [HttpGet("getother")]
     public IActionResult GetOther(int savedCodeId){
       var result = _savedCodeService.GetCodeTest(savedCodeId);
       return Ok(result);
